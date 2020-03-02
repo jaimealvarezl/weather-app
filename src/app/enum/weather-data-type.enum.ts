@@ -1,4 +1,4 @@
 export enum WeatherDataTypeEnum {
-    FORECAST= 'forecast',
-    WEATHER= 'weather'
+    FORECAST = 'forecast',
+    WEATHER = 'weather'
 }
