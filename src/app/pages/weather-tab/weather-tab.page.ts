@@ -1,19 +1,15 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {OpenWeatherService} from '../../services/open-weather.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-weather-tab',
-    templateUrl: './weather-tab.page.html',
-    styleUrls: ['./weather-tab.page.scss'],
+  selector: 'app-weather-tab',
+  templateUrl: './weather-tab.page.html',
+  styleUrls: ['./weather-tab.page.scss'],
 })
-export class WeatherTabPage implements OnChanges {
-    public geolocation = 'Managua';
+export class WeatherTabPage implements OnInit {
 
-    constructor(private openWeatherService: OpenWeatherService) {
-    }
+  constructor() { }
 
-    ngOnChanges(changes: SimpleChanges): void {
-    }
-
+  ngOnInit() {
+  }
 
 }

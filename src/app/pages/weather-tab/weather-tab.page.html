@@ -1,9 +1,15 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>weather-tab</ion-title>
+    <ion-toolbar color="primary">
+        <ion-title>Current Weather</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<app-weather [location]="geolocation"></app-weather>
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">weather-tab</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <app-weather></app-weather>
 </ion-content>
