@@ -17,6 +17,9 @@ import {WeatherIconComponent} from '../../components/weather-icon/weather-icon.c
         IonicModule,
         WeatherTabPageRoutingModule
     ],
+    exports: [
+        WeatherIconComponent
+    ],
     declarations: [WeatherTabPage, WeatherComponent, WeatherIconComponent]
 })
 export class WeatherTabPageModule {

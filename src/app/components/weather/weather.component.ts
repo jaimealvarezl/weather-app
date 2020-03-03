@@ -34,6 +34,9 @@ export class WeatherComponent implements OnChanges {
             },
             complete: () => {
                 loadingIndicator.dismiss();
+            },
+            error: err => {
+                this.currentWeather = null;
             }
         });
     }
