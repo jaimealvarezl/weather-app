@@ -1,15 +1,7 @@
 <ion-list *ngIf="forecast" lines="full">
-    <ion-item *ngFor="let forecastItem of forecast.list">
+    <ng-container *ngFor="let forecastItem of forecast.list">
         <ng-container *ngIf="forecastItem.weather.length === 1">
-            <ion-avatar slot="start">
-                <app-weather-icon [icon]="forecastItem.weather[0].icon"></app-weather-icon>
-            </ion-avatar>
-            <ion-label>
-                <h2>{{forecastItem.dt_txt | date}}</h2>
-                <h3>{{forecastItem.weather[0].main}}</h3>
-                <p><strong>Low</strong> {{forecastItem.main.temp_min}} F°</p>
-                <p><strong>High</strong> {{forecastItem.main.temp_max}} F°</p>
-            </ion-label>
+            <app-forecast-item [forecast]="forecastItem"></app-forecast-item>
         </ng-container>
-    </ion-item>
+    </ng-container>
 </ion-list>
