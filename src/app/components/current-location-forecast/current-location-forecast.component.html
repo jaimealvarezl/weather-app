@@ -1,3 +1,5 @@
-<p>
-  current-location-forecast works!
-</p>
+<app-forecast [location]="currentPosition | async"></app-forecast>
+<div>
+    <strong>result</strong>
+    {{(currentPosition | async) | json }}
+</div>

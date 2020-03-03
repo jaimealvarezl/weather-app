@@ -10,6 +10,7 @@ import {ForecastTabPage} from './forecast-tab.page';
 import {ForecastComponent} from '../../components/forecast/forecast.component';
 import {WeatherTabPageModule} from '../weather-tab/weather-tab.module';
 import {ForecastItemComponent} from '../../components/forecast-item/forecast-item.component';
+import {CurrentLocationForecastComponent} from '../../components/current-location-forecast/current-location-forecast.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import {ForecastItemComponent} from '../../components/forecast-item/forecast-ite
         ForecastTabPageRoutingModule,
         WeatherTabPageModule
     ],
-    declarations: [ForecastTabPage, ForecastComponent, ForecastItemComponent]
+    declarations: [ForecastTabPage, ForecastComponent, ForecastItemComponent, CurrentLocationForecastComponent]
 })
 export class ForecastTabPageModule {
 }

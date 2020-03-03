@@ -69,7 +69,6 @@ export class WeatherIconComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if ('icon' in changes) {
-            console.log(this.icon, this.icon.substring(0, 2));
             this.weatherImgSrc = `${WeatherIconComponent.BASE_PATH}/${this.imgSrc}.png`;
         }
     }

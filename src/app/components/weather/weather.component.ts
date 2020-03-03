@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {OpenWeatherService} from '../../services/open-weather.service';
 import {CurrentWeather} from '../../types/current-weather.type';
 import {LoadingController} from '@ionic/angular';
+import {Geoposition} from '@ionic-native/geolocation';
 
 @Component({
     selector: 'app-weather',
@@ -11,7 +12,7 @@ import {LoadingController} from '@ionic/angular';
 export class WeatherComponent implements OnChanges {
 
     @Input()
-    private location: string;
+    private location: string | Geoposition;
 
     private currentWeather?: CurrentWeather = null;
 

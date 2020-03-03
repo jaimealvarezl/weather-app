@@ -5,6 +5,7 @@ import {WeatherDataTypeEnum} from '../enum/weather-data-type.enum';
 import {WeatherService} from './weather-service';
 import {Forecast} from '../types/forecast.type';
 import {CurrentWeather} from '../types/current-weather.type';
+import {Geoposition} from '@ionic-native/geolocation';
 
 @Injectable({
     providedIn: 'root'
@@ -14,13 +15,25 @@ export class OpenWeatherService implements WeatherService {
     constructor(private httpClient: HttpClient) {
     }
 
+    private static isGeoposition(query: string | Geoposition): query is Geoposition {
+        return !(query instanceof String);
 
-    getForecast(query: string) {
-        return this.request<Forecast>(WeatherDataTypeEnum.FORECAST, {q: query});
     }
 
-    getWeather(query: string) {
-        return this.request<CurrentWeather>(WeatherDataTypeEnum.WEATHER, {q: query});
+    private static getQueryParam(query: string | Geoposition): { [key: string]: any } {
+        if (OpenWeatherService.isGeoposition(query)) {
+            return {lat: query.coords.latitude, lon: query.coords.longitude};
+        }
+        return {q: query};
+    }
+
+
+    getForecast(query: string | Geoposition) {
+        return this.request<Forecast>(WeatherDataTypeEnum.FORECAST, OpenWeatherService.getQueryParam(query));
+    }
+
+    getWeather(query: string | Geoposition) {
+        return this.request<CurrentWeather>(WeatherDataTypeEnum.WEATHER, OpenWeatherService.getQueryParam(query));
     }
 
     private request<T>(weatherType: WeatherDataTypeEnum, params?: { [key: string]: string }) {

@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
+import {from, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-current-location-forecast',
-  templateUrl: './current-location-forecast.component.html',
-  styleUrls: ['./current-location-forecast.component.scss'],
+    selector: 'app-current-location-forecast',
+    templateUrl: './current-location-forecast.component.html',
+    styleUrls: ['./current-location-forecast.component.scss'],
 })
 export class CurrentLocationForecastComponent implements OnInit {
+    public currentPosition: Observable<Geoposition>;
 
-  constructor() { }
+    constructor(private geolocation: Geolocation) {
+    }
 
-  ngOnInit() {}
+    ngOnInit() {
+        this.currentPosition = from(this.geolocation.getCurrentPosition()).pipe(map(res => res));
+    }
 
 }
