@@ -1,3 +1,23 @@
-<p>
-  weather works!
-</p>
+<ng-container *ngIf="currentWeather">
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-justify-content-center d-flex">
+                <ion-text class="display-1">{{currentWeather.main.temp}} °F</ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ng-container *ngFor="let weather of currentWeather.weather">
+            <ion-row class="ion-justify-content-center">
+                <ion-col size="4">
+                    <app-weather-icon [icon]="weather.icon"></app-weather-icon>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col class="ion-justify-content-center d-flex">
+                    <ion-text>{{weather.main}}</ion-text>
+                </ion-col>
+            </ion-row>
+        </ng-container>
+    </ion-grid>
+</ng-container>

@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
+import {ForecastTabPageRoutingModule} from './forecast-tab-routing.module';
+
 import {ForecastTabPage} from './forecast-tab.page';
 import {ForecastComponent} from '../../components/forecast/forecast.component';
 
@@ -11,7 +13,8 @@ import {ForecastComponent} from '../../components/forecast/forecast.component';
     imports: [
         CommonModule,
         FormsModule,
-        IonicModule
+        IonicModule,
+        ForecastTabPageRoutingModule
     ],
     declarations: [ForecastTabPage, ForecastComponent]
 })

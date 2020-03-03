@@ -1,9 +1,15 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>forecast-tab</ion-title>
+<ion-header [translate]="true">
+    <ion-toolbar color="primary">
+        <ion-title>Forecast</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<app-forecast [location]="geolocation"></app-forecast>
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar color="primary">
+            <ion-title size="large">forecast-tab</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <app-forecast location="Managua"></app-forecast>
 </ion-content>

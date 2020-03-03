@@ -1,19 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {IonicModule} from '@ionic/angular';
 
-import {ForecastTabPage} from './forecast-tab.page';
+import {WeatherIconComponent} from './weather-icon.component';
 
-describe('ForecastTabPage', () => {
-    let component: ForecastTabPage;
-    let fixture: ComponentFixture<ForecastTabPage>;
+describe('WeatherIconComponent', () => {
+    let component: WeatherIconComponent;
+    let fixture: ComponentFixture<WeatherIconComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ForecastTabPage],
+            declarations: [WeatherIconComponent],
             imports: [IonicModule.forRoot()]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ForecastTabPage);
+        fixture = TestBed.createComponent(WeatherIconComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     }));

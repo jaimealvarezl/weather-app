@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { ForecastTabPage } from './forecast-tab.page';
+import {ForecastTabPage} from './forecast-tab.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ForecastTabPage
-  }
+    {
+        path: '',
+        component: ForecastTabPage
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class ForecastTabPageRoutingModule {}
+export class ForecastTabPageRoutingModule {
+}
