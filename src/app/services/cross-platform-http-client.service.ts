@@ -43,8 +43,7 @@ export class CrossPlatformHttpClientService {
             }
 
             return from(this.http.get(url, params, options.headers)).pipe(map(res => {
-                console.log(res);
-                return res.data;
+                return JSON.parse(res.data);
             }));
         }
 

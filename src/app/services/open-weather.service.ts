@@ -5,7 +5,7 @@ import {WeatherService} from './weather-service';
 import {Forecast} from '../types/forecast.type';
 import {CurrentWeather} from '../types/current-weather.type';
 import {Geoposition} from '@ionic-native/geolocation';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {CrossPlatformHttpClientService} from './cross-platform-http-client.service';
 
 
@@ -31,14 +31,20 @@ export class OpenWeatherService implements WeatherService {
 
 
     getForecast(query: string | Geoposition) {
-        return this.request<Forecast>(WeatherDataTypeEnum.FORECAST, OpenWeatherService.getQueryParam(query)).pipe(map(forecast => {
-            return {
-                ...forecast,
-                list: forecast.list.filter(forecastItem => {
-                    return forecastItem.dt_txt.endsWith('09:00:00');
-                })
-            };
-        }));
+        return this.request<Forecast>(WeatherDataTypeEnum.FORECAST, OpenWeatherService.getQueryParam(query))
+            .pipe(map(forecast => {
+                return {
+                    ...forecast,
+                    list: forecast.list.filter(forecastItem => {
+                        return forecastItem.dt_txt.endsWith('09:00:00');
+                    }).map(forecastItem => {
+                        return {
+                            ...forecastItem,
+                            dt_txt: forecastItem.dt_txt.split(' ').shift()
+                        };
+                    })
+                };
+            }));
     }
 
     getWeather(query: string | Geoposition) {
@@ -46,16 +52,13 @@ export class OpenWeatherService implements WeatherService {
     }
 
     private request<T>(weatherType: WeatherDataTypeEnum, params?: { [key: string]: string }) {
-        console.log({weatherType});
         return this.httpClient.get<T>(`${environment.openWeatherApiUrl}/${weatherType}`, {
             params: {
                 ...params,
                 units: 'imperial',
                 appid: environment.openWeatherApiKey,
             }
-        }).pipe(tap(res => {
-            console.log({res});
-        }));
+        });
     }
 
 }
