@@ -10,13 +10,18 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
+import {HTTP} from '@ionic-native/http/ngx';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+    imports: [
+
+        BrowserModule, IonicModule.forRoot(),
+        AppRoutingModule, HttpClientModule],
     providers: [
         StatusBar,
+        HTTP,
         Geolocation,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}

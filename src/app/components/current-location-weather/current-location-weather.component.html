@@ -1,1 +1,4 @@
-<app-weather [location]="currentPosition | async"></app-weather>
+<ng-container *ngIf="!!(currentPosition | async)">
+    <app-weather [location]="currentPosition | async"></app-weather>
+</ng-container>
+

@@ -3,6 +3,7 @@ import {OpenWeatherService} from '../../services/open-weather.service';
 import {LoadingController} from '@ionic/angular';
 import {Forecast} from '../../types/forecast.type';
 import {Geoposition} from '@ionic-native/geolocation/ngx';
+import {OverlayBaseController} from '@ionic/angular/util/overlay';
 
 @Component({
     selector: 'app-forecast',
