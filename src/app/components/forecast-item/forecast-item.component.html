@@ -1,10 +1,11 @@
 <ion-item>
-    <ion-avatar slot="start">
+    <ion-avatar class="avatar" slot="start">
         <app-weather-icon [icon]="forecast.weather[0].icon"></app-weather-icon>
     </ion-avatar>
     <ion-label>
-        <h2>{{forecast.dt_txt | date}}</h2>
-        <h3>{{forecast.weather[0].main}}</h3>
+        <ion-text class="title">{{forecast.dt_txt}}</ion-text>
+        <br/>
+        <ion-text class="subtitle-1">{{forecast.weather[0].main}}</ion-text>
         <p><strong>Low</strong> {{forecast.main.temp_min}} F°</p>
         <p><strong>High</strong> {{forecast.main.temp_max}} F°</p>
     </ion-label>

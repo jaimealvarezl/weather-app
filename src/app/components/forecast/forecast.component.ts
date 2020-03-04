@@ -3,7 +3,6 @@ import {OpenWeatherService} from '../../services/open-weather.service';
 import {LoadingController} from '@ionic/angular';
 import {Forecast} from '../../types/forecast.type';
 import {Geoposition} from '@ionic-native/geolocation/ngx';
-import {OverlayBaseController} from '@ionic/angular/util/overlay';
 
 @Component({
     selector: 'app-forecast',
@@ -20,18 +19,18 @@ export class ForecastComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if ('location' in changes) {
-            this.fetchForecast();
+        if ('location' in changes && changes.location.currentValue) {
+            this.fetchForecast(changes.location.currentValue);
         }
     }
 
 
-    private async fetchForecast() {
+    private async fetchForecast(location: Geoposition | string) {
         const loadingIndicator = await this.loadingController.create({message: 'Please wait...'});
         await loadingIndicator.present();
 
 
-        this.openWeatherService.getForecast(this.location).subscribe({
+        this.openWeatherService.getForecast(location).subscribe({
             next: (forecast) => {
                 this.forecast = forecast;
             },

@@ -1,5 +1,3 @@
 <ng-container *ngIf="!!(currentPosition | async)">
     <app-forecast [location]="currentPosition | async"></app-forecast>
 </ng-container>
-
-{{currentPosition | async}}

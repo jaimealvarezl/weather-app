@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {from, interval, Observable} from 'rxjs';
+import {from, Observable} from 'rxjs';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
-import {debounce, filter, map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-current-location-weather',
@@ -15,9 +14,7 @@ export class CurrentLocationWeatherComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.currentPosition = from(this.geolocation.watchPosition()).pipe(
-            filter(loc => !!loc),
-            map(res => res));
+        this.currentPosition = from(this.geolocation.getCurrentPosition());
     }
 
 }
