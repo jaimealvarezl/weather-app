@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {IonicModule} from '@ionic/angular';
 
 import {WeatherTabPage} from './weather-tab.page';
+import {CurrentLocationWeatherComponent} from '../../components/current-location-weather/current-location-weather.component';
 
 describe('WeatherTabPage', () => {
     let component: WeatherTabPage;
@@ -9,7 +10,7 @@ describe('WeatherTabPage', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [WeatherTabPage],
+            declarations: [WeatherTabPage, CurrentLocationWeatherComponent],
             imports: [IonicModule.forRoot()]
         }).compileComponents();
 
