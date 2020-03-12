@@ -4,7 +4,6 @@ import {WeatherDataTypeEnum} from '../enum/weather-data-type.enum';
 import {WeatherService} from './weather-service';
 import {Forecast} from '../types/forecast.type';
 import {CurrentWeather} from '../types/current-weather.type';
-import {Geoposition} from '@ionic-native/geolocation';
 import {map} from 'rxjs/operators';
 import {CrossPlatformHttpClientService} from './cross-platform-http-client.service';
 
@@ -17,20 +16,20 @@ export class OpenWeatherService implements WeatherService {
     constructor(private httpClient: CrossPlatformHttpClientService) {
     }
 
-    private static isGeoposition(query: string | Geoposition): query is Geoposition {
+    private static isGeoposition(query: string | Coordinates): query is Coordinates {
         return !(query instanceof String);
 
     }
 
-    private static getQueryParam(query: string | Geoposition): { [key: string]: any } {
+    private static getQueryParam(query: string | Coordinates): { [key: string]: any } {
         if (OpenWeatherService.isGeoposition(query)) {
-            return {lat: query.coords.latitude, lon: query.coords.longitude};
+            return {lat: query.latitude, lon: query.longitude};
         }
         return {q: query};
     }
 
 
-    getForecast(query: string | Geoposition) {
+    getForecast(query: string | Coordinates) {
         return this.request<Forecast>(WeatherDataTypeEnum.FORECAST, OpenWeatherService.getQueryParam(query))
             .pipe(map(forecast => {
                 return {
@@ -47,7 +46,7 @@ export class OpenWeatherService implements WeatherService {
             }));
     }
 
-    getWeather(query: string | Geoposition) {
+    getWeather(query: string | Coordinates) {
         return this.request<CurrentWeather>(WeatherDataTypeEnum.WEATHER, OpenWeatherService.getQueryParam(query));
     }
 

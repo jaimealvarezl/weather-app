@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Geolocation, Geoposition} from '@ionic-native/geolocation/ngx';
-import {Observable} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {from, Observable} from 'rxjs';
+import {GeolocationService} from '../../services/geolocation.service';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-current-location-forecast',
@@ -9,13 +9,18 @@ import {filter} from 'rxjs/operators';
     styleUrls: ['./current-location-forecast.component.scss'],
 })
 export class CurrentLocationForecastComponent implements OnInit {
-    public currentPosition: Observable<Geoposition>;
+    public currentPosition: Observable<Coordinates>;
 
-    constructor(private geolocation: Geolocation) {
+    constructor(private geolocation: GeolocationService) {
     }
 
     ngOnInit() {
-        this.currentPosition = this.geolocation.watchPosition().pipe(filter((p) => !!p));
+        this.currentPosition = from(this.geolocation.getCurrentPosition()).pipe(
+            map(position => ({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            } as Coordinates)),
+        );
     }
 
 }
