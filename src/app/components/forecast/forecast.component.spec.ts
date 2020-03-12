@@ -7,6 +7,7 @@ import {CrossPlatformHttpClientService} from '../../services/cross-platform-http
 import {HTTP} from '@ionic-native/http/ngx';
 import {HttpClientModule} from '@angular/common/http';
 import {WeatherIconComponent} from '../weather-icon/weather-icon.component';
+import {Component} from '@angular/core';
 
 describe('ForecastComponent', () => {
     let component: ForecastComponent;
@@ -14,7 +15,7 @@ describe('ForecastComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ForecastComponent, ForecastItemComponent, WeatherIconComponent],
+            declarations: [ForecastComponent, ForecastItemComponent, TestHostComponent, WeatherIconComponent],
             imports: [IonicModule.forRoot(), HttpClientModule],
             providers: [CrossPlatformHttpClientService, HTTP]
         }).compileComponents();
@@ -28,3 +29,15 @@ describe('ForecastComponent', () => {
         expect(component).toBeTruthy();
     });
 });
+
+@Component({
+    selector: `host-component`,
+    template: `
+        <app-forecast [location]="location"></app-forecast>
+    `
+})
+class TestHostComponent {
+
+    location: Coordinates = {latitude: -11, longitude: 11} as Coordinates;
+}
+

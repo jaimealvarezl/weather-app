@@ -4,6 +4,7 @@ import {Platform} from '@ionic/angular';
 import {from, Observable} from 'rxjs';
 import {HTTP} from '@ionic-native/http/ngx';
 import {map} from 'rxjs/operators';
+import {Platforms} from '@ionic/core';
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +31,8 @@ export class CrossPlatformHttpClientService {
             withCredentials?: boolean;
         }
     ): Observable<T> {
-        if (this.platform.is('mobile')) {
+        const mobilePlatforms: Platforms[] = ['ios', 'android'];
+        if (mobilePlatforms.some(mobilePlatform => this.platform.is(mobilePlatform)) && !this.platform.is('mobileweb')) {
             let params = null;
 
             if (options.params) {
