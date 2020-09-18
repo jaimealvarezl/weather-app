@@ -3,6 +3,10 @@ import {IonicModule} from '@ionic/angular';
 
 import {WeatherTabPage} from './weather-tab.page';
 import {CurrentLocationWeatherComponent} from '../../components/current-location-weather/current-location-weather.component';
+import {WeatherComponent} from '../../components/weather/weather.component';
+import {WeatherIconComponent} from '../../components/weather-icon/weather-icon.component';
+import {CrossPlatformHttpClientService} from '../../services/cross-platform-http-client.service';
+import {HTTP} from '@ionic-native/http/ngx';
 
 describe('WeatherTabPage', () => {
     let component: WeatherTabPage;
@@ -10,8 +14,13 @@ describe('WeatherTabPage', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [WeatherTabPage, CurrentLocationWeatherComponent],
-            imports: [IonicModule.forRoot()]
+            declarations: [WeatherTabPage,
+                CurrentLocationWeatherComponent,
+                WeatherComponent,
+                WeatherIconComponent,
+                WeatherIconComponent],
+            imports: [IonicModule.forRoot()],
+            providers: [CrossPlatformHttpClientService, HTTP]
         }).compileComponents();
 
         fixture = TestBed.createComponent(WeatherTabPage);

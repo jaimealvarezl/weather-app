@@ -4,7 +4,9 @@ import {IonicModule} from '@ionic/angular';
 import {WeatherComponent} from './weather.component';
 import {Component} from '@angular/core';
 import {WeatherIconComponent} from '../weather-icon/weather-icon.component';
-import {Geoposition} from '@ionic-native/geolocation';
+import {CrossPlatformHttpClientService} from '../../services/cross-platform-http-client.service';
+import {HTTP} from '@ionic-native/http/ngx';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('WeatherComponent', () => {
     let component: WeatherComponent;
@@ -13,7 +15,8 @@ describe('WeatherComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [WeatherComponent, TestHostComponent, WeatherIconComponent],
-            imports: [IonicModule.forRoot()]
+            imports: [IonicModule.forRoot(), HttpClientModule],
+            providers: [CrossPlatformHttpClientService, HTTP]
         }).compileComponents();
 
         fixture = TestBed.createComponent(WeatherComponent);
@@ -34,6 +37,6 @@ describe('WeatherComponent', () => {
 })
 class TestHostComponent {
 
-    location: Geoposition = {coords: {latitude: -11, longitude: 11}} as Geoposition;
+    location: Coordinates = {latitude: -11, longitude: 11} as Coordinates;
 }
 
